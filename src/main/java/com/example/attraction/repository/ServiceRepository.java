@@ -1,4 +1,7 @@
 package com.example.attraction.repository;
 
-public class ServiceRepository {
+import com.example.attraction.entity.Service;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ServiceRepository extends JpaRepository<Service, Long> {
 }
