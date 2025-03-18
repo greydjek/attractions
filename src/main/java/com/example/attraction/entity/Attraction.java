@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "attractions")
+@Table(schema = "json", name = "attractions")
 public class Attraction {
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "name")
@@ -16,12 +16,45 @@ public class Attraction {
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     TypeAttraction type;
+
+    public Attraction() {
+    }
+
+    public Attraction(Long id, String name, String type) {
+        this.id=id;
+        TypeAttraction.valueOf(type);
+        this.name = name;
+    }
+
+    public TypeAttraction getType() {
+        return type;
+    }
+
+    public void setType(TypeAttraction type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
 
 enum TypeAttraction {
     house("Белый дом"),
-    garden("Адмиралтейский сад"),
-    square("Красная площадь");
+    garden("сад"),
+    square("площадь");
 
     String s;
 

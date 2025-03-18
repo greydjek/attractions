@@ -11,10 +11,13 @@ import java.lang.module.FindException;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Data
 public class AttractionService {
 private AttractionRepository attractionRepository;
+
+    public AttractionService(AttractionRepository attractionRepository) {
+        this.attractionRepository = attractionRepository;
+    }
 
     public Optional<Attraction> findById(Long id) {
     return attractionRepository.findById(id);
@@ -31,7 +34,10 @@ attraction.setName(name);
     attractionRepository.deleteById(id);
     return attraction.getName();
     }
-
-    public Optional<Attraction> save(String name) {
+@Transactional
+    public Optional<Attraction> save(Long id, String name, String type) {
+       Attraction attraction= new Attraction(id, name,type);
+        attractionRepository.save(attraction);
+        return Optional.of(attraction);
     }
 }
