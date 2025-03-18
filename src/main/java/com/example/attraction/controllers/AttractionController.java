@@ -32,8 +32,9 @@ import java.util.Optional;
     return attractionService.deleteById(id);
     }
 
-    @GetMapping ("save/")
-    public Optional<Attraction> findById(@RequestParam Long id, @RequestParam (defaultValue = "noname") String name,@RequestParam (defaultValue = "дом") String type){
-    return attractionService.save(id, name, type);
+    @PostMapping ("/save")
+    public Optional<Attraction> save(@RequestBody Attraction attraction
+    ){
+    return attractionService.save(attraction);
     }
 }

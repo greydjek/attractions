@@ -4,6 +4,7 @@ import com.example.attraction.entity.Attraction;
 import com.example.attraction.repository.AttractionRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 @Data
 public class AttractionService {
 private AttractionRepository attractionRepository;
-
+@Autowired
     public AttractionService(AttractionRepository attractionRepository) {
         this.attractionRepository = attractionRepository;
     }
@@ -35,8 +36,7 @@ attraction.setName(name);
     return attraction.getName();
     }
 @Transactional
-    public Optional<Attraction> save(Long id, String name, String type) {
-       Attraction attraction= new Attraction(id, name,type);
+    public Optional<Attraction> save(Attraction attraction) {
         attractionRepository.save(attraction);
         return Optional.of(attraction);
     }

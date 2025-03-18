@@ -50,10 +50,8 @@ private final static Logger logger = LoggerFactory.getLogger(AddressService.clas
         return address;
     }
 
-    public Address saveNew(String newRegion, String newAddress) {
-        Address address = new Address();
-        address.setAddress(newAddress);
-        address.setRegion(newRegion);
+    public Address saveNew(Address address) {
+
         addressRepository.save(address);
         return address;
     }
