@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class ServiceService {
+    private
     private ServiceRepository serviceRepository;
 
     public ServiceService(ServiceRepository serviceRepository) {
