@@ -23,9 +23,9 @@ class AddressServiceTest {
 
     @Test
     void deleteById() {
-//        Address address = new Address(1L,"aaaa","dddd");
-//        AddressService mockAddressService = Mockito.mock(AddressService.class);
-//        Mockito.when(mockAddressService.deleteById(address.getId())).thenReturn(Optional.ofNullable(address.getAddress()));
+        Address address = new Address(1L,"aaaa","dddd");
+        AddressService mockAddressService = Mockito.mock(AddressService.class);
+        Mockito.when(mockAddressService.deleteById(address.getId())).thenReturn(Optional.ofNullable(address.getAddress()));
 
     }
 
@@ -37,9 +37,9 @@ class AddressServiceTest {
 
     @Test
     void saveNew() {
-        Address address = new Address(1L,"aaaa","dddd");
+        Address address1 = new Address(1L,"aaaa","dddd");
         AddressService mockAddressService = Mockito.mock(AddressService.class);
-        Mockito.when(mockAddressService.saveNew(address)).thenReturn(address);
+        Mockito.when(mockAddressService.saveNew(address1)).thenReturn(address1);
     }
 
     @Test
