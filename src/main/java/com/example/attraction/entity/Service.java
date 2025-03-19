@@ -13,7 +13,7 @@ import static java.lang.String.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "json",name = "service")
+@Table(schema = "json", name = "service")
 public class Service {
     @Id
     @Column(name = "Id", nullable = false, insertable = false, updatable = false)
@@ -30,13 +30,17 @@ public class Service {
     @Column(name = "type")
     public Type type;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id")
-//    private Address address;
-
-    @ManyToMany(mappedBy = "services", cascade = CascadeType.ALL)
+    @ManyToMany( mappedBy = "services", cascade = CascadeType.ALL)
     private List<Attraction> attractions;
 
+    public Service(Long id, String description, Type type) {
+        this.id = id;
+        this.description = description;
+        this.type = type;
+    }
+
+    public Service(long l, String asdasd) {
+    }
 }
 
 

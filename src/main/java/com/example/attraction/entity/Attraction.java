@@ -14,9 +14,14 @@ import java.util.List;
 @Table(schema = "json" , name = "attractions")
 public class Attraction {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false,insertable=false, updatable=false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne
+    @JoinColumn( name = "address_id")
+    @JoinTable(schema = "json",name = "attractions_address")
+    public Address address;
 
     @Column(name = "name")
     private String name;

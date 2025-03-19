@@ -5,36 +5,40 @@ import com.example.attraction.service.AttractionService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Optional;
 
 @RestController
 @Data
 @RequestMapping("/attraction")
-    public class AttractionController {
+public class AttractionController {
     private AttractionService attractionService;
 
     public AttractionController(AttractionService attractionService) {
         this.attractionService = attractionService;
     }
 
-    @GetMapping ("/find/{id}")
-    public Optional<Attraction> findById(@PathVariable Long id){
-    return attractionService.findById(id);
+    @GetMapping("/find/{id}")
+    public Optional<Attraction> findById(@PathVariable Long id) {
+        return attractionService.findById(id);
     }
+//    @GetMapping("/find_from")
+//    public Optional<Attraction> findFromAddress(@RequestParam String city) {
+//        return attractionService.findFromAddress(city);
+//    }
 
-    @GetMapping ("/change_name/")
-    public Attraction changeById(@RequestParam Long id, @RequestParam String name ){
-    return attractionService.changeById(id, name);
+    @GetMapping("/change_name/")
+    public Attraction changeById(@RequestParam Long id, @RequestParam String name) {
+        return attractionService.changeById(id, name);
     }
 
     @DeleteMapping("/del/{id}")
-    public String deleteById(@PathVariable Long id){
-    return attractionService.deleteById(id);
+    public String deleteById(@PathVariable Long id) {
+        return attractionService.deleteById(id);
     }
 
-    @PostMapping ("/save")
-    public Optional<Attraction> save(@RequestBody Attraction attraction
-    ){
-    return attractionService.save(attraction);
+    @PostMapping("/save")
+    public Optional<Attraction> save(@RequestBody Attraction attraction) {
+        return attractionService.save(attraction);
     }
 }

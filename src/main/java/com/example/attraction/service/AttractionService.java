@@ -1,5 +1,6 @@
 package com.example.attraction.service;
 
+import com.example.attraction.converterDto.ConverterDto;
 import com.example.attraction.entity.Attraction;
 import com.example.attraction.repository.AttractionRepository;
 import lombok.Data;
@@ -15,10 +16,12 @@ import java.util.Optional;
 @Data
 public class AttractionService {
 private AttractionRepository attractionRepository;
+private ConverterDto converterDto;
 @Autowired
-    public AttractionService(AttractionRepository attractionRepository) {
+    public AttractionService(ConverterDto converterDto, AttractionRepository attractionRepository) {
         this.attractionRepository = attractionRepository;
-    }
+this.converterDto = converterDto;
+}
 
     public Optional<Attraction> findById(Long id) {
     return attractionRepository.findById(id);
@@ -40,4 +43,8 @@ attraction.setName(name);
         attractionRepository.save(attraction);
         return Optional.of(attraction);
     }
+
+//    public Optional<Attraction> findFromAddress(String city) {
+////return attractionRepository.
+//    }
 }

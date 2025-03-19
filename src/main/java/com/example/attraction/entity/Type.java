@@ -1,6 +1,6 @@
 package com.example.attraction.entity;
 
-enum Type {
+public enum Type {
     GID,
     AUTOEXPRESS,
     FOOD

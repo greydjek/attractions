@@ -1,5 +1,6 @@
 package com.example.attraction.controllers;
 
+import com.example.attraction.dto.ServiceDto;
 import com.example.attraction.entity.Service;
 import com.example.attraction.service.ServiceService;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ServiceController {
     }
 
     @GetMapping("/find/{id}")
-    public Optional<Service> findById(@PathVariable Long id) {
+    public Optional<ServiceDto> findById(@PathVariable Long id) {
         return serviceService.findById(id);
     }
 

@@ -1,7 +1,8 @@
 package com.example.attraction.service;
 
+import com.example.attraction.converterDto.ConverterDto;
+import com.example.attraction.dto.ServiceDto;
 import com.example.attraction.repository.ServiceRepository;
-import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,15 +12,18 @@ import java.util.Optional;
 
 @Service
 public class ServiceService {
+    private ConverterDto converterDto;
     private ServiceRepository serviceRepository;
 @Autowired
-    public ServiceService(ServiceRepository serviceRepository) {
+    public ServiceService(ConverterDto converterDto, ServiceRepository serviceRepository) {
         this.serviceRepository = serviceRepository;
-    }
+    this.converterDto= converterDto;
+}
 
-    public Optional<com.example.attraction.entity.Service> findById(Long id) {
-        return serviceRepository.findById(id);
-    }
+    public Optional<ServiceDto> findById(Long id) {
+ Object s =  serviceRepository.findById(id).map(converterDto::converterServiceToDto).orElseThrow(()->new FindException("cant find by id" +id));
+    return (Optional<ServiceDto>) s;
+}
 
     public String deleteById(Long id) {
         String name = "cant find service";

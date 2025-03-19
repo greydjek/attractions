@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
 @Table(schema = "json", name = "address")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Address {
     @Id
     @Column(name = "id")
@@ -20,8 +20,8 @@ public class Address {
     private Long id;
 
     @OneToMany()
-    @JoinColumn(name = "id")
-    private List<Attraction> attractions= new ArrayList<Attraction>();
+    @JoinTable(schema = "json",name = "attractions_address")
+     private List<Attraction> attractions= new ArrayList<Attraction>();
 
 //    @Column(name = "building")
     private String building;
@@ -44,4 +44,9 @@ public class Address {
 //    @Column(name = "index")
     private Integer index;
 
+    public Address(Long id, String building, String address) {
+        this.id= id;
+        this.building= building;
+        this.address = address;
+    }
 }

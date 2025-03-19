@@ -1,6 +1,9 @@
 package com.example.attraction.service;
 
+import com.example.attraction.converterDto.ConverterDto;
+import com.example.attraction.dto.AddressDto;
 import com.example.attraction.entity.Address;
+import com.example.attraction.entity.Attraction;
 import com.example.attraction.repository.AddressRepository;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,6 +11,7 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +31,17 @@ import java.util.Optional;
 @Data
 public class AddressService {
 private final static Logger logger = LoggerFactory.getLogger(AddressService.class.getClass());
-  private final AddressRepository addressRepository;
-@Autowired
-    public AddressService(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
-    }
+private ConverterDto converterDto;
+  private  AddressRepository addressRepository;
 
-    public Optional<Address> findById(Long id) {
-        return addressRepository.findById(id);
+    @Autowired
+    public AddressService(AddressRepository addressRepository, ConverterDto converterDto) {
+        this.addressRepository = addressRepository;
+this.converterDto = converterDto;
+}
+
+    public Optional<AddressDto> findById(Long id) {
+        return  addressRepository.findById(id).map(converterDto::converterAddressToDto);
     }
 
     public Optional<String> deleteById(Long id) {
@@ -51,7 +58,6 @@ private final static Logger logger = LoggerFactory.getLogger(AddressService.clas
     }
 
     public Address saveNew(Address address) {
-
         addressRepository.save(address);
         return address;
     }
@@ -78,4 +84,8 @@ logger.info("all data address save");
             throw new RuntimeException(e);
         }
     }
+
+//    public Optional<Attraction> findAttractionByCity(String city) {
+//addressRepository.findAllBy
+//}
 }
