@@ -1,10 +1,9 @@
+ - changeSet:
 --liquibase formatted sql
-
---changeSet studentArtem:1
+--changeset studentArtem:1
 --its a first migration
-- changeSet:
-create schema json
- select json
+create schema json;
+
 --insert into json.address (id,building, street, address)
 --values
 --('1','building','street','address'),

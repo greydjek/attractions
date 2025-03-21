@@ -28,11 +28,21 @@ services:
       start_period: 10s
       retries: 5
     entrypoint: /bin/sh -c "chmod 600 /pgadmin4/pgpass; /entrypoint.sh;"
+  attracSpring:
+    image: attraction:latest
+    build:
+      context: target
+      dockerfile: ../Dockerfile
+    restart: "no"
+    ports:
+      - "4001:4001"
+    labels:
+      amplicode.image: springboot
   postgres-2:
     image: postgres:17.4
     restart: "no"
     ports:
-      - "5432:5432"
+      - "5430:5432"
     volumes:
       - postgres-2_data:/var/lib/postgresql/data
     environment:

@@ -15,30 +15,33 @@ import java.util.Optional;
 @Service
 @Data
 public class AttractionService {
-private AttractionRepository attractionRepository;
-private ConverterDto converterDto;
-@Autowired
+    private AttractionRepository attractionRepository;
+    private ConverterDto converterDto;
+
+    @Autowired
     public AttractionService(ConverterDto converterDto, AttractionRepository attractionRepository) {
         this.attractionRepository = attractionRepository;
-this.converterDto = converterDto;
-}
+        this.converterDto = converterDto;
+    }
 
     public Optional<Attraction> findById(Long id) {
-    return attractionRepository.findById(id);
+        return attractionRepository.findById(id);
     }
-@Transactional
+
+    @Transactional
     public Attraction changeById(Long id, String name) {
-Attraction attraction = attractionRepository.findById(id).orElseThrow(()-> new FindException("cant find"));
-attraction.setName(name);
-    return attraction;
+        Attraction attraction = attractionRepository.findById(id).orElseThrow(() -> new FindException("cant find"));
+        attraction.setName(name);
+        return attraction;
     }
 
     public String deleteById(Long id) {
-    Attraction attraction = attractionRepository.findById(id).orElseThrow(()-> new FindException("cant find"));
-    attractionRepository.deleteById(id);
-    return attraction.getName();
+        Attraction attraction = attractionRepository.findById(id).orElseThrow(() -> new FindException("cant find"));
+        attractionRepository.deleteById(id);
+        return attraction.getName();
     }
-@Transactional
+
+    @Transactional
     public Optional<Attraction> save(Attraction attraction) {
         attractionRepository.save(attraction);
         return Optional.of(attraction);

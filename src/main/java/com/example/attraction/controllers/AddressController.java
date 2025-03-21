@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,6 +34,11 @@ public class AddressController {
     public Optional<AddressDto> findAddress(@PathVariable Long id) {
         logger.info("Get mapping " + addressService.findById(id).toString());
         return addressService.findById(id);
+    }
+    @GetMapping("/all")
+    public List<AddressDto> findAddress() {
+        logger.info("Get mapping " + addressService.findAll().toString());
+        return addressService.findAll();
     }
 
 //    @GetMapping("at_by_city/")

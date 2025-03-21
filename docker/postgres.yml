@@ -1,0 +1,10 @@
+version: '3'
+services:
+  my-Postgres-Student:
+    image: postgres:17.4
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_USER: student
+      POSTGRES_PASSWORD: 100
+      POSTGRES_DB: postgres
